@@ -4,6 +4,7 @@
   <thead>
     <tr>
       <th>Name</th>
+      <th>Type</th>
       <th>Description</th>
       <th>Price</th>
       <th>Availability</th>
@@ -14,11 +15,13 @@
     <% @robots.each do |robot| %>
       <tr data-controller="robot">
         <td><%= robot.name %></td>
+        <td><%= robot.robot_type %></td>
         <td><%= robot.description %></td>
         <td><%= robot.price %></td>
         <td><%= robot.availability ? 'Available' : 'Not available' %></td>
         <td>
           <%= link_to 'Show', robot_path(robot) %>
+        </td>
       </tr>
     <% end %>
   </tbody>

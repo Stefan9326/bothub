@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :bookings, only: [:index, :create]
+  resources :bookings, only: [:index, :create, :destroy]
 
   resources :users, only: [] do
     resources :rentals, only: [:index]

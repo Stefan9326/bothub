@@ -1,13 +1,27 @@
 class BookingsController < ApplicationController
   def index
-    # Add code to retrieve and display the list of bookings
+    @bookings = Booking.all
   end
 
   def create
-    # Add code to create a new booking
+    @booking = Booking.new(booking_params)
+
+    if @booking.save
+      redirect_to bookings_path, notice: 'Booking created successfully.'
+    else
+      render :index
+    end
   end
 
   def destroy
-    # Add code to delete a booking
+    @booking = Booking.find(params[:id])
+    @booking.destroy
+    redirect_to bookings_path, notice: 'Booking deleted successfully.'
+  end
+
+  private
+
+  def booking_params
+    params.require(:booking).permit(:start_date, :end_date, :robot_id, :user_id)
   end
 end

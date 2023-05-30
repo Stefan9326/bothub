@@ -3,15 +3,5 @@ Rails.application.routes.draw do
 
   root to: "pages#home"
 
-  resources :robots do
-    member do
-      get :availability
-    end
-  end
-
-  resources :bookings, only: [:index, :create, :destroy]
-
-  resources :users, only: [] do
-    resources :rentals, only: [:index]
-  end
+  resources :robots
 end

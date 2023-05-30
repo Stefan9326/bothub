@@ -3,5 +3,6 @@ Rails.application.routes.draw do
 
   root to: "pages#home"
 
+  get "robots/my_robots", to: "robots#my_robots"
   resources :robots
 end

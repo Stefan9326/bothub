@@ -1,25 +1,52 @@
 class RobotsController < ApplicationController
+  before_action :authenticate_user!, only: [:create]
   def index
-    # Add code to retrieve and display the list of robots
+    @robots = Robot.all
   end
 
   def new
-    # Add code to prepare a new robot form
+    @robot = Robot.new
+  end
+
+  def my_robots
+    @robots = Robot.where(user_id: current_user.id)
   end
 
   def create
-    # Add code to create a new robot based on form submission
+    @robot = current_user.robots.build(robot_params)
+    if @robot.save
+      redirect_to robot_path(@robot), notice: "Robot listing created successfully."
+    else
+      render :new
+    end
+  end
+
+  def show
+    @robot = Robot.find(params[:id])
   end
 
   def edit
-    # Add code to retrieve and prepare a robot for editing
+    @robot = Robot.find(params[:id])
   end
 
   def update
-    # Add code to update the details of a robot based on form submission
+    @robot = Robot.find(params[:id])
+    if @robot.update(robot_params)
+      redirect_to robot_path(@robot), notice: "Robot listing updated successfully."
+    else
+      render :edit
+    end
   end
 
   def destroy
-    # Add code to delete a robot
+    @robot = Robot.find(params[:id])
+    @robot.destroy
+    redirect_to robots_path, notice: "Robot listing deleted successfully."
+  end
+
+  private
+
+  def robot_params
+    params.require(:robot).permit(:name, :description, :price, :availability)
   end
 end

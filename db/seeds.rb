@@ -5,6 +5,7 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+=======
 require 'faker'
 
 # Clear existing data
@@ -27,3 +28,4 @@ user1.save!
   robot.save!
 end
 puts "Created robots"
+master

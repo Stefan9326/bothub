@@ -1,0 +1,8 @@
+<h1><%= @robot.name %> Listing</h1>
+
+<p>Description: <%= @robot.description %></p>
+<p>Price: <%= @robot.price %></p>
+<p>Availability: <%= @robot.availability ? 'Available' : 'Not available' %></p>
+
+
+<%= link_to 'Back', robots_path %>

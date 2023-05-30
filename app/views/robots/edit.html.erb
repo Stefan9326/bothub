@@ -1,2 +1,5 @@
-<h1>Robots#edit</h1>
-<p>Find me in app/views/robots/edit.html.erb</p>
+<h1>Edit Robot</h1>
+
+<%= render 'form', robot: @robot %>
+
+<%= link_to 'Back', robots_path %>

@@ -5,25 +5,33 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
-require 'faker'
+default_robot_image = Rails.root.join('app', 'assets', 'images', 'p0uy4lv_Professional_Robot_Companion_to_let_online_natural_colo_026f3ec9-e89a-4c2b-a85e-793775680587.png')
+robot_types = [
+  'Cleaner Robot',
+  'Personal Trainer Robot',
+  'Home Health Care Robot',
+  'Security Robot',
+  'Tutor Robot',
+  'Pet Care Robot',
+  'Handyman Robot',
+  'Chef Robot',
+  'Gardener Robot',
+  'Personal Assistant Robot'
+]
 
-# Clear existing data
-Robot.destroy_all
-User.destroy_all
-
-puts "Terminator incoming"
-# Create Robots
-user1 = User.new(email: "test@test.com", password: "123456")
-user1.save!
 10.times do
   robot = Robot.new(
-    name: Faker::Name.unique.name,
+    name: Faker::Name.name,
     description: Faker::Lorem.sentence,
-    price: 10.00,
-    availability: true,
-    user_id: user1.id # Assuming you have a User model with associated data
-    # User.pluck(:id).sample
+    price: Faker::Commerce.price,
+    availability: [true, false].sample,
+    robot_type: robot_types.sample,
+    user_id: User.pluck(:id).sample
   )
-  robot.save!
+
+  if robot.image.blank?
+    robot.image.attach(io: File.open(default_robot_image), filename: 'default_robot_image.png', content_type: 'image/png')
+  end
+
+  robot.save
 end
-puts "Created robots"

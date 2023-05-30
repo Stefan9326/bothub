@@ -1,6 +1,7 @@
 class Robot < ApplicationRecord
   belongs_to :user
   has_many :bookings, dependent: :destroy
+  has_one_attached :image
 
   ROBOT_TYPES = [
     'Cleaner Robot',

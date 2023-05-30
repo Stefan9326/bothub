@@ -1,5 +1,9 @@
 <h1><%= @robot.name %> Listing</h1>
 
+<% if @robot.image.attached? %>
+  <%= image_tag url_for(@robot.image), class: 'robot-image' %>
+<% end %>
+
 <p>Description: <%= @robot.description %></p>
 <p>Price: <%= @robot.price %></p>
 <p>Type: <%= @robot.robot_type %></p>

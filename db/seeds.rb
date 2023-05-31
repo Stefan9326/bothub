@@ -21,11 +21,10 @@ robot_types = [
 
 # Create Users
 10.times do
-  user = User.create!(
+  User.create!(
     email: Faker::Internet.email,
     password: Faker::Internet.password
   )
-  user.save!
 end
 
 10.times do

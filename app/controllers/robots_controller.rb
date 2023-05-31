@@ -1,5 +1,6 @@
 class RobotsController < ApplicationController
   before_action :authenticate_user!, only: [:new]
+
   def index
     if params[:search].present?
       @robots = Robot.where(robot_type: params[:search])
@@ -19,7 +20,7 @@ class RobotsController < ApplicationController
   end
 
   def my_robots
-    @robots = Robot.where(user_id: current_user.id)
+    @robots = current_user.robots
   end
 
   def create

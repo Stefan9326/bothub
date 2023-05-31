@@ -1,7 +1,17 @@
 class RobotsController < ApplicationController
   before_action :authenticate_user!, only: [:new]
   def index
-    @robots = Robot.all
+    if params[:search].present?
+      @robots = Robot.where(robot_type: params[:search])
+    else
+      @robots = Robot.all
+    end
+  end
+
+  def search
+    term = params[:type]
+    @robot_types = Robot.where('robot_type ILIKE ?', "%#{term}%").pluck(:robot_type)
+    render json: @robot_types
   end
 
   def new
@@ -47,6 +57,6 @@ class RobotsController < ApplicationController
   private
 
   def robot_params
-    params.require(:robot).permit(:name, :description, :price, :availability)
+    params.require(:robot).permit(:name, :description, :price, :availability, :robot_type, :image)
   end
 end

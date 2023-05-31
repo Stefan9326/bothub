@@ -5,4 +5,6 @@ Rails.application.routes.draw do
 
   get "robots/my_robots", to: "robots#my_robots"
   resources :robots
+
+  get 'robots/search', to: 'robots#search'
 end

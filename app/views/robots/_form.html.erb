@@ -3,9 +3,11 @@
 
   <div class="form-inputs">
     <%= form.input :name %>
+    <%= form.input :robot_type, collection: Robot::ROBOT_TYPES, prompt: 'Select a Robot Type' %>
     <%= form.input :description %>
     <%= form.input :price %>
     <%= form.input :availability, as: :boolean %>
+    <%= form.input :image, as: :file %>
   </div>
 
   <div class="form-actions">

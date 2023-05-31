@@ -19,6 +19,15 @@ robot_types = [
   'Personal Assistant Robot'
 ]
 
+# Create Users
+10.times do
+  User.create!(
+    name: Faker::Name.name,
+    email: Faker::Internet.email,
+    password: Faker::Internet.password
+  )
+end
+
 10.times do
   robot = Robot.new(
     name: Faker::Name.name,

@@ -9,6 +9,10 @@ class RobotsController < ApplicationController
     end
   end
 
+  def my_bookings
+    @bookings = current_user.bookings
+  end
+
   def search
     term = params[:type]
     @robot_types = Robot.where('robot_type ILIKE ?', "%#{term}%").pluck(:robot_type)

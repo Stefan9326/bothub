@@ -20,6 +20,7 @@
 @import "components/footer";
 @import "components/logo";
 @import "components/navbar";
+@import "components/images";
 
 * {
   box-sizing: border-box;
@@ -30,4 +31,16 @@
 body {
   margin-top: 100px;
   padding: 0 40px;
+}
+
+a {
+  text-decoration: none;
+}
+
+// move this
+.page-title {
+  letter-spacing: 10px;
+  font-weight: 600;
+  color: #FF5B27;
+  margin-left: 50px;
 }

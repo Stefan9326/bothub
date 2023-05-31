@@ -12,17 +12,21 @@
 }
 
 .card {
-  width: 300px;
+  width: 350px;
   border-radius: 15px;
-  box-shadow: 0 0 3px rgb(111, 218, 248);
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
   text-align: center;
   padding: 10px;
   border: 1px solid rgb(230,230,230);
+  word-wrap: break-word;
+}
 
-  &:hover {
-    box-shadow: 0 0 10px rgb(230,230,230);
-  }
+.index-card-container {
+  padding: 0 150px;
+}
 
+.index-card {
+  // max-width: 300px
 }
 
 .cards {
@@ -31,4 +35,15 @@
   margin-bottom: 30px;
   margin-right: 30px;
   margin-left: 30px;
+}
+
+.show-card {
+  gap: 10px;
+  width: 60%;
+  margin: 0 auto;
+  padding: 50px 80px;
+  box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 16px;
+  background-color: rgba(238, 201, 172, 0.859);
+  font-size: 1.2em;
 }

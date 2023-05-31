@@ -1,22 +1,24 @@
-<h1><%= @robot.name %> Listing</h1>
+<div class="show-card">
+  <h1 class='page-title'><%= @robot.name%></h1>
 
-<% if @robot.image.attached? %>
-  <%= image_tag url_for(@robot.image), class: 'robot-image' %>
-<% end %>
-
-<p>Description: <%= @robot.description %></p>
-<p>Price: <%= @robot.price %></p>
-<p>Type: <%= @robot.robot_type %></p>
-<p>Availability: <%= @robot.availability ? 'Available' : 'Not available' %></p>
-
-<% if user_signed_in? && current_user == @robot.user %>
-  <%= link_to 'Edit', edit_robot_path(@robot) %>
-
-  <%= form_with model: @robot, method: :delete, local: true do |form| %>
-    <%= form.submit 'Delete' %>
+  <% if @robot.image.attached? %>
+    <%= image_tag url_for(@robot.image), class: 'show-page-img' %>
   <% end %>
-<% end %>
 
-<%= link_to 'Back', robots_path %>
+  <p>Description: <%= @robot.description %></p>
+  <p>Price: <%= @robot.price %></p>
+  <p>Type: <%= @robot.robot_type %></p>
+  <p>Availability: <%= @robot.availability ? 'Available' : 'Not available' %></p>
 
-<%= link_to 'Book Now', new_robot_booking_path(@robot) %>
+  <% if user_signed_in? && current_user == @robot.user %>
+    <%= link_to 'Edit', edit_robot_path(@robot) %>
+
+    <%= form_with model: @robot, method: :delete, local: true do |form| %>
+      <%= form.submit 'Delete' %>
+    <% end %>
+  <% end %>
+
+  <%= link_to 'Back', robots_path, class: 'button' %>
+
+  <%= link_to 'Book Now', new_robot_booking_path(@robot), class: 'button' %>
+</div>

@@ -1,13 +1,19 @@
-.btn-primary {
+.button {
   display: inline-block;
   background-color: #FF5B27;
   padding: 16px 36px;
   border-radius: 50px;
   color: white;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+  border: none;
+}
+
+.search button {
+  border-top-left-radius: none;
+  border-bottom-left-radius: none;
 }
 
 .btn-secondary {
-  border: 1px solid #FF5B27;
   padding: 8px 16px;
   border-radius: 50px;
   color: #FF5B27;

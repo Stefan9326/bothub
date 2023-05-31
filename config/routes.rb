@@ -4,7 +4,6 @@ Rails.application.routes.draw do
   root to: "pages#home"
 
   get "robots/my_robots", to: "robots#my_robots"
-  resources :robots do
-    resources :bookings, only: [:index, :create, :destroy]
-  end
+  resources :robots
+  get 'robots/search', to: 'robots#search'
 end

@@ -1,10 +1,14 @@
 <!-- code a Hero / Banner section -->
+<div class="logo">
+  <%= image_tag("bot-icon.jpg")%>
+  <span class="brand-name">BotHub</span>
+</div>
+
   <div class="banner">
     <div class="container">
-      <h1>Placeholder head.</h1>
-      <p>Placeholder paragraph.</p>
-      <%= link_to 'View All Robots', robots_path, class: 'btn-primary' %>
-      <%# <a class="btn-primary" href="#">Placeholder</a> %>
+      <h1>A mechanical helping hand.</h1>
+      <p>Our robot companions are happy to help, no matter the task. From butlers to gardeners, BotWorks has got you covered.</p>
+      <%= link_to "Get started", robots_path, class: "btn-primary" %>
     </div>
   </div>
 
@@ -38,10 +42,10 @@
   <div class="footer">
     <div class="links">
       <a href="#"><i class="fab fa-fw fa-facebook-f"></i></a>
-      <a href="#"><i class="fab fa-fw fa-github"></i></a>
+      <%# <a href="#"><i class="fab fa-fw fa-github"></i></a> %>
       <a href="#"><i class="fab fa-fw fa-twitter"></i></a>
       <a href="#"><i class="fab fa-fw fa-instagram"></i></a>
-      <p>This website was coded with <i class="fas fa-heart"></i> at Le Wagon.</p>
+      <%# <p>This website was coded with <i class="fas fa-heart"></i> at Le Wagon.</p> %>
 
     </div>
   </div>

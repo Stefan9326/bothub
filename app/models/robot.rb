@@ -16,7 +16,7 @@ class Robot < ApplicationRecord
     'Personal Assistant Robot'
   ]
 
-  validates :robot_type, inclusion: { in: ROBOT_TYPES }
+  validates :robot_type, presence: true
 
   validates :name, presence: true
   validates :price, numericality: { greater_than_or_equal_to: 0 }

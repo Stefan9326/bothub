@@ -10,15 +10,17 @@
   <p>Type: <%= @robot.robot_type %></p>
   <p>Availability: <%= @robot.availability ? 'Available' : 'Not available' %></p>
 
-  <% if user_signed_in? && current_user == @robot.user %>
-    <%= link_to 'Edit', edit_robot_path(@robot) %>
-
-    <%= form_with model: @robot, method: :delete, local: true do |form| %>
-      <%= form.submit 'Delete' %>
+  <div class="d-flex flex-column gap-2 align-items-start">
+    <% if user_signed_in? && current_user == @robot.user %>
+      <%= link_to 'Edit', edit_robot_path(@robot), class: 'button' %>
+      <%= form_with model: @robot, method: :delete, local: true do |form| %>
+        <%= form.submit 'Delete', class: 'button' %>
+      <% end %>
     <% end %>
-  <% end %>
+    <%= link_to 'Back', robots_path, class: 'button' %>
+    <% unless @robot.user == current_user %>
+      <%= link_to 'Book Now', new_robot_booking_path(@robot), class: 'button' %>
+    <% end %>
+  </div>
 
-  <%= link_to 'Back', robots_path, class: 'button' %>
-
-  <%= link_to 'Book Now', new_robot_booking_path(@robot), class: 'button' %>
 </div>

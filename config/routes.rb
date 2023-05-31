@@ -3,7 +3,10 @@ Rails.application.routes.draw do
 
   root to: "pages#home"
 
+  resources :robots do
+    resources :bookings, only: :create
+  end
+  resources :bookings, only: [:destroy, :index, :show]
   get "robots/my_robots", to: "robots#my_robots"
-  resources :robots
   get 'robots/search', to: 'robots#search'
 end

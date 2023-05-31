@@ -17,4 +17,9 @@
   <% end %>
 <% end %>
 
+<%= simple_form_for [@robot, @booking] do |f| %>
+<%= f.input :start_date, label: 'Enter date' %>
+<%= f.input :end_date, label: 'Enter end date' %>
+<%= f.button :submit %>
+<% end %>
 <%= link_to 'Back', robots_path %>

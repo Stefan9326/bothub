@@ -7,4 +7,6 @@ Rails.application.routes.draw do
   resources :robots
 
   get 'robots/search', to: 'robots#search'
+
+  get 'my_robots', to: 'robots#my_robots'
 end

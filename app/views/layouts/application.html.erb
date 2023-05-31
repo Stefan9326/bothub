@@ -10,6 +10,14 @@
     <%= javascript_importmap_tags %>
   </head>
   <body>
+    <header>
+      <div class="navbar">
+        <%= link_to root_path, class: "navbar-brand" do %>
+          <%= image_tag "bot-icon.jpg" %>
+            Bot<span class="hub-word">Hub</span>
+        <% end %>
+      </div>
+    </header>
     <%= yield %>
   </body>
 </html>

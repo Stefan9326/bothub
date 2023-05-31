@@ -3,11 +3,11 @@
   <%# Search bar %>
   <div class="d-flex justify-content-between">
     <div class="d-flex mb-3">
-      <%= form_tag robots_path, method: :get, class: 'form-inline', data: { controller: 'search' } do %>
+      <%= form_tag robots_path, method: :get, class: 'form-inline position-relative', data: { controller: 'search' } do %>
         <div class="input-group">
           <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: 'Search by type', data: { target: 'search.input' } %>
           <div class="input-group-append">
-            <%= submit_tag 'Search', class: 'button search-button'%>
+            <%= submit_tag 'Search', class: 'button search-button position-absolute'%>
           </div>
       </div>
     <% end %>

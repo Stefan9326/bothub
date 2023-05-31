@@ -7,16 +7,16 @@
 #   Character.create(name: "Luke", movie: movies.first)
 default_robot_image = Rails.root.join('app', 'assets', 'images', 'p0uy4lv_Professional_Robot_Companion_to_let_online_natural_colo_026f3ec9-e89a-4c2b-a85e-793775680587.png')
 robot_types = [
-  'Cleaner Robot',
-  'Personal Trainer Robot',
-  'Home Health Care Robot',
-  'Security Robot',
-  'Tutor Robot',
-  'Pet Care Robot',
-  'Handyman Robot',
-  'Chef Robot',
-  'Gardener Robot',
-  'Personal Assistant Robot'
+  'Cleaner',
+  'Personal Trainer',
+  'Home Health Care',
+  'Security',
+  'Tutor',
+  'Pet Care',
+  'Handyman',
+  'Chef',
+  'Gardener',
+  'Personal Assistant'
 ]
 
 # Create Users

@@ -11,4 +11,6 @@ Rails.application.routes.draw do
   get 'robots/search', to: 'robots#search'
 
   get 'my_robots', to: 'robots#my_robots'
+
+  get '/my_bookings', to: 'robots#my_bookings'
 end

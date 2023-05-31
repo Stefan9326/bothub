@@ -1,11 +1,9 @@
 <h1>ALL ROBOTS</h1>
-
 <% if user_signed_in? %>
   <div class="text-right">
     <%= link_to 'My Robots', my_robots_path, class: 'btn btn-primary' %>
   </div>
 <% end %>
-
 <div class="d-flex justify-content-between mb-3">
   <div>
     <%= link_to 'New Robot', new_robot_path, class: 'btn btn-primary' %>

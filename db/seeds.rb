@@ -41,5 +41,5 @@ end
     robot.image.attach(io: File.open(default_robot_image), filename: 'default_robot_image.png', content_type: 'image/png')
   end
 
-  robot.save
+  robot.save!
 end

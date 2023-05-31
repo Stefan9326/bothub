@@ -12,14 +12,11 @@
 <% if user_signed_in? && current_user == @robot.user %>
   <%= link_to 'Edit', edit_robot_path(@robot) %>
 
-  <%= form_with url: robot_path(@robot), method: :delete, local: true do %>
-    <%= submit_tag 'Delete' %>
+  <%= form_with model: @robot, method: :delete, local: true do |form| %>
+    <%= form.submit 'Delete' %>
   <% end %>
 <% end %>
 
-<%= simple_form_for [@robot, @booking] do |f| %>
-<%= f.input :start_date, label: 'Enter date' %>
-<%= f.input :end_date, label: 'Enter end date' %>
-<%= f.button :submit %>
-<% end %>
 <%= link_to 'Back', robots_path %>
+
+<%= link_to 'Book Now', new_robot_booking_path(@robot) %>

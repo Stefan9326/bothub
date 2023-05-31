@@ -1,10 +1,11 @@
 class BookingsController < ApplicationController
-  def index
-    @bookings = Booking.all
+  before_action :set_robot, only: [:new, :create]
+
+  def new
+    @booking = Booking.new
   end
 
   def create
-    @robot = Robot.find(params[:robot_id])
     @booking = Booking.new(booking_params)
     @booking.robot = @robot
     @booking.user = current_user
@@ -12,22 +13,24 @@ class BookingsController < ApplicationController
     if @booking.save
       redirect_to booking_path(@booking), notice: 'Booking created successfully.'
     else
-      render robot_path(@robot)
+      render :new
     end
   end
 
   def show
     @booking = Booking.find(params[:id])
-    @robot = @booking.robot
-  end
-
-  def destroy
-    @booking = Booking.find(params[:id])
-    @booking.destroy
-    redirect_to bookings_path, notice: 'Booking deleted successfully.'
+    @robot = @booking.robot if @booking.present?
   end
 
   private
+
+  def set_booking
+    @booking = Booking.find(params[:id])
+  end
+
+  def set_robot
+    @robot = Robot.find(params[:robot_id])
+  end
 
   def booking_params
     params.require(:booking).permit(:start_date, :end_date)

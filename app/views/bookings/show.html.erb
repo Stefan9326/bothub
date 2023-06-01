@@ -8,7 +8,9 @@
   <div class="booking">
     <p>Start Date: <%= booking.start_date %></p>
     <p>End Date: <%= booking.end_date %></p>
-    <!-- Add more booking details here as needed -->
+    <%= link_to 'Edit Booking', edit_booking_path(@booking) %>
   </div>
 <% end %>
+
+<%= link_to 'Delete Booking', booking_destroy_path(@booking), data: { turbo_method: :delete, turbo_confirm: 'Are you sure you want to delete this booking?' } %>
 <%= link_to 'Back', robots_path, class: 'button' %>

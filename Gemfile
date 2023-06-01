@@ -82,5 +82,3 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
-
-gem "stimulus_reflex", "= 3.5.0.pre8"

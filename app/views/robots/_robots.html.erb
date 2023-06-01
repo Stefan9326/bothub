@@ -1,0 +1,16 @@
+<% robots.each do |robot| %>
+  <% unless user_signed_in? && robot.user == current_user %>
+    <div class="card index-card">
+      <% if robot.image.attached? %>
+        <%= cl_image_tag robot.image.key, height: 200, crop: :fill %>
+      <% end %>
+      <div class="card-body">
+        <h5 class="card-title"><%= link_to robot.name, robot_path(robot) %></h5>
+        <p class="card-text"><%= robot.description.truncate(100) %></p>
+        <p class="card-text">Type: <%= robot.robot_type %></p>
+        <p class="card-text">Price: <%= robot.price %></p>
+        <p class="card-text">Availability: <%= robot.availability ? 'Available' : 'Not Available' %></p>
+      </div>
+    </div>
+  <% end %>
+<% end %>

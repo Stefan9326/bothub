@@ -8,7 +8,6 @@ Rails.application.routes.draw do
   end
   resources :bookings, only: [:destroy, :index, :show]
   get "robots/my_robots", to: "robots#my_robots"
-  get 'robots/search', to: 'robots#search'
 
   get 'my_robots', to: 'robots#my_robots'
 

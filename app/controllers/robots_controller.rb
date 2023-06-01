@@ -1,22 +1,21 @@
 class RobotsController < ApplicationController
   before_action :authenticate_user!, only: [:new]
+  protect_from_forgery except: :index
 
   def index
-    if params[:search].present?
-      @robots = Robot.where(robot_type: params[:search])
+    if params[:query].present?
+      @robots = Robot.where("name ILIKE ?", "%#{params[:query]}%")
     else
       @robots = Robot.all
+    end
+    respond_to do |format|
+      format.html
+      format.js { render partial: 'robots', locals: { robots: @robots } }
     end
   end
 
   def my_bookings
     @bookings = current_user.bookings
-  end
-
-  def search
-    term = params[:type]
-    @robot_types = Robot.where('robot_type ILIKE ?', "%#{term}%").pluck(:robot_type)
-    render json: @robot_types
   end
 
   def new

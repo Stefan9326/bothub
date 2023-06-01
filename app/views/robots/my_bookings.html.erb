@@ -6,7 +6,7 @@
       <h5 class="card-title"><%= link_to booking.robot.name, robot_path(booking.robot) %></h5>
       <p class="card-text">Start Date: <%= booking.start_date %></p>
       <p class="card-text">End Date: <%= booking.end_date %></p>
-      <!-- Add more booking details as needed -->
+      <p class="card-text">Robot Average Rating: <%= booking.robot.average_rating %></p>
     </div>
   </div>
 <% end %>

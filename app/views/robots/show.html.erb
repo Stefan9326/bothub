@@ -1,5 +1,5 @@
 <div class="show-card">
-  <h1 class='page-title'><%= @robot.name%></h1>
+  <h1 class='page-title'><%= @robot.name %></h1>
 
   <% if @robot.image.attached? %>
     <%= image_tag url_for(@robot.image), class: 'show-page-img' %>
@@ -9,6 +9,20 @@
   <p>Price: <%= @robot.price %></p>
   <p>Type: <%= @robot.robot_type %></p>
   <p>Availability: <%= @robot.availability ? 'Available' : 'Not available' %></p>
+
+  <% if current_user && @robot.bookings.exists?(user_id: current_user.id, status: 'completed') %>
+    <%= render 'reviews/form', booking: @robot.bookings.find_by(user_id: current_user.id, status: 'completed') %>
+  <% end %>
+
+  <% if @robot.reviews.present? %>
+    <div class="robot-rating">
+      <%= pluralize(@robot.average_rating, 'star') %>
+    </div>
+  <% else %>
+    <div class="robot-no-rating">
+      No reviews yet
+    </div>
+  <% end %>
 
   <div class="d-flex flex-column gap-2 align-items-start">
     <% if user_signed_in? && current_user == @robot.user %>
@@ -22,5 +36,4 @@
       <%= link_to 'Book Now', new_robot_booking_path(@robot), class: 'button' %>
     <% end %>
   </div>
-
 </div>

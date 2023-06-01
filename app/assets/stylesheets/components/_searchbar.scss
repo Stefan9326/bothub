@@ -1,0 +1,18 @@
+.search-bar {
+  min-height: 50px;
+  width: 50%;
+  border-radius: 22px;
+  padding: 0 20px;
+  font-size: 1.3em;
+  border: 2px solid rgb(188, 188, 188);
+
+  &:focus {
+    outline: none;
+    border: 2px solid rgb(116, 150, 230);
+  }
+
+  &::placeholder {
+    font-style: italic;
+    color: rgb(188, 188, 188);
+  }
+}

@@ -1,22 +1,42 @@
 <div data-controller="search">
   <div class="d-flex justify-content-between align-items-center mb-5">
     <h1 class="page-title">ROBOTS</h1>
-    <%# Search bar %>
+    <% if user_signed_in? %>
       <div class="d-flex gap-4">
-        <% if user_signed_in? %>
-          <%= link_to 'My Robots', my_robots_path, class: 'button' %>
-          <%= link_to 'My Bookings', my_bookings_path, class: 'button' %>
-        <% end %>
-          <div>
-            <%= link_to 'New Robot', new_robot_path, class: 'button' %>
-          </div>
+        <%= link_to 'My Robots', my_robots_path, class: 'button' %>
+        <%= link_to 'My Bookings', my_bookings_path, class: 'button' %>
       </div>
+    <% end %>
+    <div>
+      <%= link_to 'New Robot', new_robot_path, class: 'button' %>
+    </div>
   </div>
-  <div class="d-flex justify-content-center mb-5"><input  placeholder='Start typing to filter by name or type...' data-search-target="input" data-action='input->search#search' class="search-bar"></div>
 
-  <div class="index-card-container" >
+  <div class="d-flex justify-content-center mb-5">
+    <input placeholder="Start typing to filter by name or type..." data-search-target="input" data-action="input->search#search" class="search-bar">
+  </div>
+
+  <div class="index-card-container">
     <div class="d-flex justify-content-center mx-auto flex-wrap gap-5" data-search-target="display">
-       <%= render 'robots', robots: @robots %>
+      <% @robots.each do |robot| %>
+        <div class="card" style="width: 18rem;">
+          <% if robot.image.attached? %>
+            <%= link_to robot_path(robot) do %>
+              <%= image_tag url_for(robot.image), class: 'card-img-top', alt: robot.name %>
+            <% end %>
+          <% end %>
+          <div class="card-body">
+            <h5 class="card-title"><%= robot.name %></h5>
+            <p class="card-text">Description: <%= robot.description %></p>
+            <p class="card-text">Price: <%= robot.price %></p>
+            <% if robot.reviews.any? %>
+              <p class="card-text">Average Rating: <%= robot.average_rating %></p>
+            <% else %>
+              <p class="card-text">No reviews yet.</p>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>

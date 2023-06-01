@@ -10,5 +10,4 @@ eagerLoadControllersFrom("controllers", application)
 // import { lazyLoadControllersFrom } from "@hotwired/stimulus-loading"
 // lazyLoadControllersFrom("controllers", application)
 // app/javascript/controllers/index.js
-import { Application } from "stimulus"
-import DeleteController from "./delete_controller"
+import { Application } from "@hotwired/stimulus"

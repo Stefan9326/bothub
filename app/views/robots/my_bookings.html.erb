@@ -3,7 +3,7 @@
 <% @bookings.each do |booking| %>
   <div class="card mb-4">
     <div class="card-body">
-      <h5 class="card-title"><%= link_to booking.robot.name, robot_path(booking.robot) %></h5>
+      <h5 class="card-title"><%= link_to booking.robot.name, booking_path(booking) %></h5>
       <p class="card-text">Start Date: <%= booking.start_date %></p>
       <p class="card-text">End Date: <%= booking.end_date %></p>
       <!-- Add more booking details as needed -->

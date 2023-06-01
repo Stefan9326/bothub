@@ -6,7 +6,7 @@
   <% end %>
 
   <p>Description: <%= @robot.description %></p>
-  <p>Price: <%= @robot.price %></p>
+  <p>Price: €<%= @robot.price %></p>
   <p>Type: <%= @robot.robot_type %></p>
   <p>Availability: <%= @robot.availability ? 'Available' : 'Not available' %></p>
 
@@ -17,9 +17,20 @@
         <%= form.submit 'Delete', class: 'button' %>
       <% end %>
     <% end %>
-    <%= link_to 'Back', robots_path, class: 'button' %>
     <% unless @robot.user == current_user %>
-      <%= link_to 'Book Now', new_robot_booking_path(@robot), class: 'button' %>
+      <h3>Make a booking <%= @robot.name %></h3>
+      <div class="price d-none"><%= @robot.price %></div>
+      <%= simple_form_for [@robot, @booking] do |f| %>
+        <%= f.input :start_date, as: :string, label: 'How long would you like to book for?', placeholder: "Click to pick your dates...", input_html: { data: { controller: "datepicker" } } %>
+        <%= f.button :submit , class: "button" %>
+      <% end %>
+
+      <div data-controller="display-price">
+        <div data-display-price-target="display"></div>
+      </div>
+
+      <%= link_to 'Back', robots_path, class: 'button' %>
+      <%# <%= link_to 'Book Now', new_robot_booking_path(@robot), class: 'button' %>
     <% end %>
   </div>
 

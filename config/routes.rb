@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
   root to: "pages#home"
 
+  get 'bookings/form', to: 'bookings#form'
+
   resources :robots do
     resources :bookings, only: [:create, :new]
   end

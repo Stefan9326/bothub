@@ -14,9 +14,7 @@ export default class extends Controller {
 
   handleDateSelected(event) {
     const priceElement = document.querySelector('.price')
-    console.log(priceElement)
     const price = parseFloat(priceElement.textContent)
-    console.log(price)
     const selectedDate = event.detail
     this.displayTarget.textContent = `Total price: €${(price * selectedDate).toFixed(2)}`
   }

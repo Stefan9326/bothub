@@ -4,7 +4,7 @@ class RobotsController < ApplicationController
 
   def index
     if params[:query].present?
-      @robots = Robot.where("name ILIKE ?", "%#{params[:query]}%")
+      @robots = Robot.where("name ILIKE ? OR robot_type ILIKE ?", "%#{params[:query]}%", "%#{params[:query]}%")
     else
       @robots = Robot.all
     end

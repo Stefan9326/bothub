@@ -14,9 +14,17 @@
   </div>
   <div class="d-flex justify-content-center mb-5"><input  placeholder='Start typing to filter by name or type...' data-search-target="input" data-action='input->search#search' class="search-bar"></div>
 
-  <div class="index-card-container" >
-    <div class="d-flex justify-content-center mx-auto flex-wrap gap-5" data-search-target="display">
-       <%= render 'robots', robots: @robots %>
-    </div>
+  <div class="cards-grid">
+    <%= render 'robots', robots: @robots %>
   </div>
 </div>
+
+<style>
+
+  body {
+      background-image: url('https://images.unsplash.com/photo-1536933742725-4e11180a9b9d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80');
+      background-size: cover;
+      background-repeat: no-repeat;
+  }
+
+</style>

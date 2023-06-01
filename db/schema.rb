@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_30_204340) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_01_145310) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -49,8 +49,22 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_30_204340) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "duration"
+    t.decimal "total_cost"
+    t.string "status"
     t.index ["robot_id"], name: "index_bookings_on_robot_id"
     t.index ["user_id"], name: "index_bookings_on_user_id"
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.integer "rating"
+    t.text "comment"
+    t.bigint "user_id", null: false
+    t.bigint "robot_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["robot_id"], name: "index_reviews_on_robot_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
   create_table "robots", force: :cascade do |t|
@@ -81,5 +95,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_30_204340) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "bookings", "robots"
   add_foreign_key "bookings", "users"
+  add_foreign_key "reviews", "robots"
+  add_foreign_key "reviews", "users"
   add_foreign_key "robots", "users"
 end

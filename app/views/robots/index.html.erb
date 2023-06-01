@@ -1,40 +1,42 @@
-<div class="d-flex justify-content-between align-items-center mb-5">
-  <h1 class="page-title">ROBOTS</h1>
-  <%# Search bar %>
-  <div class="d-flex justify-content-between">
-    <div class="d-flex mb-3">
-      <%= form_tag robots_path, method: :get, class: 'form-inline', data: { controller: 'search' } do %>
-        <div class="input-group">
-          <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: 'Search by type', data: { target: 'search.input' } %>
-          <div class="input-group-append">
-            <%= submit_tag 'Search', class: 'button search-button'%>
-          </div>
+<div data-controller="search">
+  <div class="d-flex justify-content-between align-items-center mb-5">
+    <h1 class="page-title">ROBOTS</h1>
+    <% if user_signed_in? %>
+      <div class="d-flex gap-4">
+        <%= link_to 'My Robots', my_robots_path, class: 'button' %>
+        <%= link_to 'My Bookings', my_bookings_path, class: 'button' %>
       </div>
     <% end %>
-  </div>
-</div>
-      <div>
-        <%= link_to 'New Robot', new_robot_path, class: 'button' %>
-      </div>
+    <div>
+      <%= link_to 'New Robot', new_robot_path, class: 'button' %>
+    </div>
   </div>
 
-<div class="index-card-container">
-  <div class="d-flex justify-content-center mx-auto flex-wrap gap-5">
-    <% @robots.each do |robot| %>
-      <% unless user_signed_in? && robot.user == current_user %>
-          <div class="card index-card">
-            <% if robot.image.attached? %>
-              <%= cl_image_tag robot.image.key, height: 200, crop: :fill %>
+  <div class="d-flex justify-content-center mb-5">
+    <input placeholder="Start typing to filter by name or type..." data-search-target="input" data-action="input->search#search" class="search-bar">
+  </div>
+
+  <div class="index-card-container">
+    <div class="d-flex justify-content-center mx-auto flex-wrap gap-5" data-search-target="display">
+      <% @robots.each do |robot| %>
+        <div class="card" style="width: 18rem;">
+          <% if robot.image.attached? %>
+            <%= link_to robot_path(robot) do %>
+              <%= image_tag url_for(robot.image), class: 'card-img-top', alt: robot.name %>
             <% end %>
-            <div class="card-body">
-              <h5 class="card-title"><%= link_to robot.name, robot_path(robot) %></h5>
-              <p class="card-text"><%= robot.description.truncate(100) %></p>
-              <p class="card-text">Type: <%= robot.robot_type %></p>
-              <p class="card-text">Price: <%= robot.price %></p>
-              <p class="card-text">Availability: <%= robot.availability ? 'Available' : 'Not Available' %></p>
-            </div>
+          <% end %>
+          <div class="card-body">
+            <h5 class="card-title"><%= robot.name %></h5>
+            <p class="card-text">Description: <%= robot.description %></p>
+            <p class="card-text">Price: <%= robot.price %></p>
+            <% if robot.reviews.any? %>
+              <p class="card-text">Average Rating: <%= robot.average_rating %></p>
+            <% else %>
+              <p class="card-text">No reviews yet.</p>
+            <% end %>
           </div>
+        </div>
       <% end %>
-    <% end %>
+    </div>
   </div>
 </div>

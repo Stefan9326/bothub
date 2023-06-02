@@ -1,9 +1,12 @@
 <h1>New Booking for <%= @robot.name %></h1>
-
+<div>Price: €<span class="price"><%= @robot.price %></span></div>
 <%= simple_form_for [@robot, @booking] do |f| %>
-  <%= f.input :start_date, label: 'Enter date' %>
-  <%= f.input :end_date, label: 'Enter end date' %>
+  <%= f.input :start_date, as: :string, label: 'How long would you like to book for?', input_html: { data: { controller: "datepicker" } } %>
   <%= f.button :submit %>
 <% end %>
+
+<div data-controller="display-price">
+  <div data-display-price-target="display"></div>
+</div>
 
 <%= link_to 'Back', robot_path(@robot) %>

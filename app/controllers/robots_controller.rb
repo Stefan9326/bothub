@@ -1,6 +1,7 @@
 class RobotsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_robot, only: [:show, :edit, :update, :destroy]
+  before_action :authorize_user, only: [:edit, :update, :destroy]
 
   def index
     if params[:query].present?
@@ -18,8 +19,8 @@ class RobotsController < ApplicationController
   def show
     @booking = @robot.bookings.find_by(user_id: current_user.id) if user_signed_in?
     @reviews = @robot.reviews
-    @average_rating = @robot.average_rating
-    @review = Review.new # Add this line to instantiate a new review object for the form
+    @average_rating = @reviews.average(:rating)
+    @review = Review.new
   end
 
   def new
@@ -37,12 +38,9 @@ class RobotsController < ApplicationController
   end
 
   def edit
-    authorize @robot
   end
 
   def update
-    authorize @robot
-
     if @robot.update(robot_params)
       redirect_to @robot, notice: 'Robot was successfully updated.'
     else
@@ -51,9 +49,12 @@ class RobotsController < ApplicationController
   end
 
   def destroy
-    authorize @robot
     @robot.destroy
     redirect_to robots_url, notice: 'Robot was successfully destroyed.'
+  end
+
+  def my_robots
+    @robots = current_user.robots
   end
 
   def my_bookings
@@ -64,6 +65,12 @@ class RobotsController < ApplicationController
 
   def set_robot
     @robot = Robot.find(params[:id])
+  end
+
+  def authorize_user
+    unless current_user == @robot.user
+      redirect_to root_path, alert: 'You are not authorized to perform this action.'
+    end
   end
 
   def robot_params

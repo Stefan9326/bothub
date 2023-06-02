@@ -30,7 +30,7 @@
             <p class="card-text">Description: <%= robot.description %></p>
             <p class="card-text">Price: <%= robot.price %></p>
             <% if robot.reviews.any? %>
-              <p class="card-text">Average Rating: <%= robot.average_rating %></p>
+              <p class="card-text">Average Rating: <%= number_with_precision(robot.reviews.average(:rating), precision: 1) %></p>
             <% else %>
               <p class="card-text">No reviews yet.</p>
             <% end %>

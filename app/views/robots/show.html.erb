@@ -16,7 +16,7 @@
 
   <% if @robot.reviews.present? %>
     <div class="robot-rating">
-      <%= pluralize(@robot.average_rating, 'star') %>
+      Average Rating: <%= number_with_precision(@robot.average_rating, precision: 1) %>
     </div>
   <% else %>
     <div class="robot-no-rating">

@@ -5,7 +5,7 @@
   text-align: center;
   padding: 10px;
   border: 1px solid rgb(230, 230, 230);
-  background-color: white; /* Set background color to white */
+  // background-color: white; /* Set background color to white */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -27,13 +27,16 @@
 
 .card {
   width: 350px;
-  height: 400px; /* Adjust the height as desired */
+  height: fit-content; /* Adjust the height as desired */
   border-radius: 15px;
   box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
-  text-align: center;
+  color: white;
   border: 1px solid rgb(230, 230, 230);
   word-wrap: break-word;
-  background-color: rgba(255, 255, 255, 0.9); /* Adjust opacity as desired */
+  background-color: inherit;
+  border: none;
+  box-shadow: none;
+  // background-color: rgba(255, 255, 255, 0.9); /* Adjust opacity as desired */
 }
 
 .card img {

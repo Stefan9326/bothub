@@ -7,10 +7,19 @@
 #   Character.create(name: "Luke", movie: movies.first)
 
 # Create Users
-User.create!(email: 'soltanpour.p@gmail.com', password: '123456')
-User.create!(email: 'dorin.m.calin@gmail.com', password: '123456')
-User.create!(email: 'rory.boyle13@gmail.com', password: '123456')
-User.create!(email: 'stefshambrook@gmail.com', password: '123456')
+# User.create!(email: 'soltanpo.p@gmail.com', password: '123456')
+# User.create!(email: 'dorin.calin@gmail.com', password: '123456')
+# User.create!(email: 'rory.ble13@gmail.com', password: '123456')
+# User.create!(email: 'stefshbrook@gmail.com', password: '123456')
+password = '123456'
+
+
+10.times do
+  User.create!(
+    email: Faker::Internet.unique.email,
+    password: password
+  )
+end
 
 robot1 = Robot.create!(
   name: 'Clean-O-Bot',
@@ -103,17 +112,16 @@ robot10 = Robot.create!(
 )
 
 # Attach image to the robots
-robot1.image.attach(io: File.open('/Users/pouyansoltanpour/code/Pouyansol/buthub2/bothub/app/assets/images/image1.png'), filename: 'image1.png', content_type: 'image/png')
-robot2.image.attach(io: File.open('/Users/pouyansoltanpour/code/Pouyansol/buthub2/bothub/app/assets/images/image2.png'), filename: 'image2.png', content_type: 'image/png')
-robot3.image.attach(io: File.open('/Users/pouyansoltanpour/code/Pouyansol/buthub2/bothub/app/assets/images/image3.png'), filename: 'image3.png', content_type: 'image/png')
-robot4.image.attach(io: File.open('/Users/pouyansoltanpour/code/Pouyansol/buthub2/bothub/app/assets/images/image4.png'), filename: 'image4.png', content_type: 'image/png')
-robot5.image.attach(io: File.open('/Users/pouyansoltanpour/code/Pouyansol/buthub2/bothub/app/assets/images/image5.png'), filename: 'image5.png', content_type: 'image/png')
-robot6.image.attach(io: File.open('/Users/pouyansoltanpour/code/Pouyansol/buthub2/bothub/app/assets/images/image6.png'), filename: 'image6.png', content_type: 'image/png')
-robot7.image.attach(io: File.open('/Users/pouyansoltanpour/code/Pouyansol/buthub2/bothub/app/assets/images/image7.png'), filename: 'image7.png', content_type: 'image/png')
-robot8.image.attach(io: File.open('/Users/pouyansoltanpour/code/Pouyansol/buthub2/bothub/app/assets/images/image8.png'), filename: 'image8.png', content_type: 'image/png')
-robot9.image.attach(io: File.open('/Users/pouyansoltanpour/code/Pouyansol/buthub2/bothub/app/assets/images/image9.png'), filename: 'image9.png', content_type: 'image/png')
-robot10.image.attach(io: File.open('/Users/pouyansoltanpour/code/Pouyansol/buthub2/bothub/app/assets/images/image10.png'), filename: 'image10.png', content_type: 'image/png')
-
+robot1.image.attach(io: File.open('app/assets/images/image1.png'), filename: 'image1.png', content_type: 'image/png')
+robot2.image.attach(io: File.open('app/assets/images/image2.png'), filename: 'image2.png', content_type: 'image/png')
+robot3.image.attach(io: File.open('app/assets/images/image3.png'), filename: 'image3.png', content_type: 'image/png')
+robot4.image.attach(io: File.open('app/assets/images/image4.png'), filename: 'image4.png', content_type: 'image/png')
+robot5.image.attach(io: File.open('app/assets/images/image5.png'), filename: 'image5.png', content_type: 'image/png')
+robot6.image.attach(io: File.open('app/assets/images/image6.png'), filename: 'image6.png', content_type: 'image/png')
+robot7.image.attach(io: File.open('app/assets/images/image7.png'), filename: 'image7.png', content_type: 'image/png')
+robot8.image.attach(io: File.open('app/assets/images/image8.png'), filename: 'image8.png', content_type: 'image/png')
+robot9.image.attach(io: File.open('app/assets/images/image9.png'), filename: 'image9.png', content_type: 'image/png')
+robot10.image.attach(io: File.open('app/assets/images/image10.png'), filename: 'image10.png', content_type: 'image/png')
 
 # Save robots
 robot1.save!

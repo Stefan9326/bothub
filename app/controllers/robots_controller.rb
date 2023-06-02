@@ -18,7 +18,8 @@ class RobotsController < ApplicationController
   end
 
   def show
-    @booking = @robot.bookings.find_by(user_id: current_user.id) if user_signed_in?
+    @booking = Booking.new
+    @robots = Robot.find(params[:id])
     @reviews = @robot.reviews
     @average_rating = @reviews.average(:rating)
     @review = Review.new
@@ -51,7 +52,7 @@ class RobotsController < ApplicationController
 
   def destroy
     @robot.destroy
-    redirect_to robots_url, notice: 'Robot was successfully destroyed.'
+    redirect_to robots_path, notice: 'Robot was successfully destroyed.'
   end
 
   def my_robots

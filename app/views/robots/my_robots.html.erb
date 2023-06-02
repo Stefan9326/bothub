@@ -6,7 +6,7 @@
     <p>Availability: <%= robot.availability ? 'Available' : 'Not available' %></p>
 
     <%= button_to 'Edit', edit_robot_path(robot), method: :get, class: 'button' %>
-    <%= button_to 'Delete', robot_path(robot), method: :delete, data: { confirm: 'Are you sure you want to delete this robot?' }, class: 'button' %>
+    <%= button_to 'Delete', robot_path(robot), method: :delete, data: { turbo_confirm: 'Are you sure you want to delete this robot?' }, class: 'button' %>
 
     <hr>
   <% end %>

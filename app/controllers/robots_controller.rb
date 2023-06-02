@@ -2,8 +2,7 @@ class RobotsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_robot, only: [:show, :edit, :update, :destroy]
   skip_before_action :verify_authenticity_token, only: [:index]
- #
-
+  
   def index
     if params[:query].present?
 

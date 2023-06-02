@@ -1,50 +1,121 @@
 <div class="show-card">
-  <h1 class='page-title'><%= @robot.name %></h1>
-
-  <% if @robot.image.attached? %>
-    <%= image_tag url_for(@robot.image), class: 'show-page-img' %>
-  <% end %>
-
-  <p>Description: <%= @robot.description %></p>
-  <p>Price: €<%= @robot.price %></p>
-  <p>Type: <%= @robot.robot_type %></p>
-  <p>Availability: <%= @robot.availability ? 'Available' : 'Not available' %></p>
-
-  <% if current_user && @robot.bookings.exists?(user_id: current_user.id, status: 'completed') %>
-    <%= render 'reviews/form', booking: @robot.bookings.find_by(user_id: current_user.id, status: 'completed') %>
-  <% end %>
-
-  <% if @robot.reviews.present? %>
-    <div class="robot-rating">
-      <%= pluralize(@robot.average_rating, 'star') %>
-    </div>
-  <% else %>
-    <div class="robot-no-rating">
-      No reviews yet
-    </div>
-  <% end %>
-
-  <div class="d-flex flex-column gap-2 align-items-start">
-    <% if user_signed_in? && current_user == @robot.user %>
-      <%= link_to 'Edit', edit_robot_path(@robot), class: 'button' %>
-      <%= form_with model: @robot, method: :delete, local: true do |form| %>
-        <%= form.submit 'Delete', class: 'button' %>
+  <div class="row">
+    <div class="col-md-6">
+      <% if @robot.image.attached? %>
+        <%= image_tag url_for(@robot.image), class: 'show-page-img', style: 'border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);' %>
       <% end %>
-    <% end %>
-    <% unless @robot.user == current_user %>
-      <h3>Make a booking <%= @robot.name %></h3>
-      <div class="price d-none"><%= @robot.price %></div>
-      <%= simple_form_for [@robot, @booking] do |f| %>
-        <%= f.input :start_date, as: :string, label: 'How long would you like to book for?', placeholder: "Click to pick your dates...", input_html: { data: { controller: "datepicker" } } %>
-        <%= f.button :submit , class: "button" %>
-      <% end %>
-
-      <div data-controller="display-price">
-        <div data-display-price-target="display"></div>
+    </div>
+    <div class="col-md-6">
+      <div class="top-right">
+        <h1 class="page-title bigger-text">Iona Jones</h1>
+        <%= link_to 'Back', robots_path, class: 'button button-small' %>
       </div>
+      <div class="product-details">
+        <p>Description: <%= @robot.description %></p>
+        <p>Price: <%= @robot.price %></p>
+        <p>Type: <%= @robot.robot_type %></p>
+        <p>Availability: <%= @robot.availability ? 'Available' : 'Not available' %></p>
 
-      <%= link_to 'Back', robots_path, class: 'button' %>
-      <%# <%= link_to 'Book Now', new_robot_booking_path(@robot), class: 'button' %>
-    <% end %>
+        <% if current_user && @robot.bookings.exists?(user_id: current_user.id, status: 'completed') %>
+          <%= render 'reviews/form', booking: @robot.bookings.find_by(user_id: current_user.id, status: 'completed') %>
+        <% end %>
+
+        <% if @robot.reviews.present? %>
+          <div class="robot-rating">
+            <%= pluralize(@robot.average_rating, 'star') %>
+          </div>
+        <% else %>
+          <div class="robot-no-rating">
+            No reviews yet
+          </div>
+        <% end %>
+
+        <div class="button-group">
+          <% if user_signed_in? && current_user == @robot.user %>
+            <%= link_to 'Edit', edit_robot_path(@robot), class: 'button' %>
+            <%= form_with model: @robot, method: :delete, local: true do |form| %>
+              <%= form.submit 'Delete', class: 'button' %>
+            <% end %>
+          <% end %>
+          <% unless @robot.user == current_user %>
+            <h4>Make a booking</h4>
+            <div><span class="price d-none"><%= @robot.price %></span></div>
+            <%= simple_form_for [@robot, @booking] do |f| %>
+              <%= f.input :start_date, as: :string, label: 'How long would you like to book for?', input_html: { data: { controller: "datepicker" } } %>
+              <%= f.button :submit %>
+            <% end %>
+          <% end %>
+
+          <div data-controller="display-price">
+            <div data-display-price-target="display"></div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
+
+<style>
+
+ body {
+      background-image: url('https://images.unsplash.com/photo-1660297901918-df23c4289839?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80');
+      background-size: cover;
+      background-repeat: no-repeat;
+  }
+
+  .show-card {
+    width: 70%;
+    margin: 0 auto;
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .show-page-img {
+    width: 100%;
+  }
+
+  .page-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  .bigger-text {
+    font-size: 24px;
+    margin-bottom: 20px;
+    margin-left: 0px;
+    font-size: 45px;
+    margin-top: 20px;
+  }
+
+  .product-details p {
+    font-size: 14px;
+    margin-bottom: 8px;
+  }
+
+  .button {
+    background-color: #FF5B27;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+  }
+
+  .button-small {
+    padding: 6px 12px;
+    font-size: 14px;
+  }
+
+  .button-group {
+    margin-top: 20px;
+  }
+
+  .top-right {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+</style>

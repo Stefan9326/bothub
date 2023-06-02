@@ -3,7 +3,16 @@ class RobotsController < ApplicationController
   before_action :set_robot, only: [:show, :edit, :update, :destroy]
 
   def index
-    @robots = Robot.includes(:reviews)
+    if params[:query].present?
+      @robots = Robot.where("name ILIKE ? OR robot_type ILIKE ?", "%#{params[:query]}%", "%#{params[:query]}%")
+    else
+      @robots = Robot.all
+    end
+    respond_to do |format|
+      format.html
+      format.js { render partial: 'robots', locals: { robots: @robots } }
+    end
+
   end
 
   def show

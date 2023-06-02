@@ -3,7 +3,12 @@ Rails.application.routes.draw do
 
   root to: "pages#home"
 
+
+  get 'bookings/form', to: 'bookings#form'
+
+
   delete '/delete_booking/:id', to: 'bookings#destroy', as: :booking_destroy
+
   resources :robots do
     resources :bookings, only: [:create, :new]
   end

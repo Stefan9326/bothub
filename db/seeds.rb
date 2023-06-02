@@ -5,7 +5,7 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
-default_robot_image = Rails.root.join('app', 'assets', 'images', 'p0uy4lv_Professional_Robot_Companion_to_let_online_natural_colo_026f3ec9-e89a-4c2b-a85e-793775680587.png')
+default_robot_image_paths = (1..5).map { |n| Rails.root.join("app", "assets", "images", "#{n}.png") }
 robot_types = [
   'Cleaner',
   'Personal Trainer',
@@ -38,8 +38,19 @@ end
   )
 
   if robot.image.blank?
-    robot.image.attach(io: File.open(default_robot_image), filename: 'default_robot_image.png', content_type: 'image/png')
+    random_image_path = default_robot_image_paths.sample
+    robot.image.attach(io: File.open(random_image_path), filename: File.basename(random_image_path), content_type: 'image/png')
   end
 
   robot.save!
+
+  # Add fake ratings for the robot
+  rand(1..5).times do
+    Review.create!(
+      rating: rand(1..5),
+      comment: Faker::Lorem.paragraph,
+      user_id: User.pluck(:id).sample,
+      robot_id: robot.id
+    )
+  end
 end

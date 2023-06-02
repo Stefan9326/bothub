@@ -15,7 +15,9 @@
       <div class="navbar navbar-expand-sm navbar-light navbar-lewago">
         <%= link_to root_path, class: "navbar-brand" do %>
           <%= image_tag "bot-icon.jpg" %>
-            Bot<span class="hub-word">Hub</span>
+            B<%= image_tag "gear.png", class: "", id: "navbarDropdown"%>
+            <span>t</span><span class="hub-word">Hub<%= image_tag "gears.png", class: "avatar dropdown-toggle gears", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+            </span>
         <% end %>
           <div class="container-fluid">
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,9 +30,9 @@
           <li class="nav-item dropdown">
             <%= image_tag "chevron.png", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-              <%= link_to "Robots", robots_path, class: "dropdown-item" %>
+              <%= link_to "My Robots", robots_path, class: "dropdown-item" %>
               <%= link_to "Bookings", my_bookings_path, class: "dropdown-item" %>
-              <%= link_to "Log out", "#", class: "dropdown-item", data: {turbo_method: :delete} %>
+              <%= link_to "Log in/out", "#", class: "dropdown-item", data: {turbo_method: :delete} %>
             </div>
           </li>
         <% else %>

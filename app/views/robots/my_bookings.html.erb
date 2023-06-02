@@ -1,15 +1,17 @@
-<h1>My Bookings</h1>
+<div class="container">
+<h1 class="title-white">My Bookings</h1>
 
-<% @bookings.each do |booking| %>
-  <div class="show-card mb-4">
-    <div class="card-body">
-      <h5 class="card-title"><%= link_to booking.robot.name, booking_path(booking) %></h5>
-      <%= image_tag url_for(booking.robot.image), class: 'card-img-top', alt: booking.robot.name %>
-      <p class="card-text">Start Date: <%= booking.start_date %></p>
-      <p class="card-text">End Date: <%= booking.end_date %></p>
-      <p class="card-text">Robot Average Rating: <%= booking.robot.average_rating %></p>
+  <% @bookings.each do |booking| %>
+    <div class="show-card mb-4">
+      <div class="card-body">
+        <h5 class="card-title"><%= link_to booking.robot.name, booking_path(booking) %></h5>
+        <%= image_tag url_for(booking.robot.image), class: 'card-img-top', alt: booking.robot.name %>
+        <p class="card-text">Start Date: <%= booking.start_date %></p>
+        <p class="card-text">End Date: <%= booking.end_date %></p>
+        <p class="card-text">Robot Average Rating: <%= booking.robot.average_rating %></p>
+      </div>
     </div>
-  </div>
-<% end %>
+  <% end %>
 
-<%= link_to 'Back', robots_path, class: 'button' %>
+  <%= link_to 'Back', robots_path, class: 'button' %>
+</div>

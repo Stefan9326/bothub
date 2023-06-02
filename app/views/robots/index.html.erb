@@ -15,16 +15,15 @@
       <% @robots.each do |robot| %>
         <div class="card" style="width: 18rem;">
           <% if robot.image.attached? %>
-            <%= link_to robot_path(robot) do %>
-              <%= image_tag url_for(robot.image), class: 'card-img-top', alt: robot.name %>
-            <% end %>
-          <% end %>
+            <%= image_tag url_for(robot.image), class: 'card-img-top', alt: robot.name %>
+           <% end %>
           <div class="card-body">
             <h5 class="card-title"><%= robot.name %></h5>
             <p class="card-text">Description: <%= robot.description %></p>
             <p class="card-text">Price: <%= robot.price %></p>
             <% if robot.reviews.any? %>
               <p class="card-text">Average Rating: <%= robot.average_rating %></p>
+              <%= image_tag "gear-solid.svg" %>
             <% else %>
               <p class="card-text">No reviews yet.</p>
             <% end %>

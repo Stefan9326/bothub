@@ -1,17 +1,46 @@
-<div class="form-container">
-  <h1>New Robot</h1>
-
-  <%= render 'form', robot: @robot %>
+<div class="demo-wrap">
+  <img class="demo-bg" src="https://images.unsplash.com/photo-1562408590-e32931084e23?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="">
+  <div class="form-container">
+<div class="demo-content">
+    <h1>New Robot</h1>
+        <%= render 'form', robot: @robot %>
+  </div>
+  </div>
 </div>
-<%= link_to 'Back', robots_path %>
-
 <style>
+.demo-wrap {
+  overflow: hidden;
+  position: relative;
+  }
 
-  body {
+  .demo-bg {
+    opacity: 0.8;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: auto;
+  }
+
+  .demo-content {
+    position: relative;
+    background-color: white;
+    padding: 6%;
+    border-radius: 3%;
+  }
+
+.create-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+
+
+  /* body {
       background-image: url('https://images.unsplash.com/photo-1562408590-e32931084e23?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80');
       background-size: cover;
       background-repeat: no-repeat;
-  }
+  } */
   .form-container {
     max-width: 500px;
     margin: 0 auto;
@@ -66,7 +95,7 @@
     border: 1px solid #007bff;
     border-radius: 4px;
     text-decoration: none;
-    color: #007bff;
+    color: ##FF5B27;
     text-align: center;
   }
 </style>

@@ -38,8 +38,17 @@
             <% end %>
           <% end %>
           <% unless @robot.user == current_user %>
-            <%= link_to 'Book Now', new_robot_booking_path(@robot), class: 'button' %>
+            <h4>Make a booking</h4>
+            <div><span class="price d-none"><%= @robot.price %></span></div>
+            <%= simple_form_for [@robot, @booking] do |f| %>
+              <%= f.input :start_date, as: :string, label: 'How long would you like to book for?', input_html: { data: { controller: "datepicker" } } %>
+              <%= f.button :submit %>
+            <% end %>
           <% end %>
+
+          <div data-controller="display-price">
+            <div data-display-price-target="display"></div>
+          </div>
         </div>
       </div>
     </div>

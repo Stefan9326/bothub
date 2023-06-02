@@ -49,8 +49,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_01_145310) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "duration"
-    t.decimal "total_cost"
     t.string "status"
     t.index ["robot_id"], name: "index_bookings_on_robot_id"
     t.index ["user_id"], name: "index_bookings_on_user_id"
